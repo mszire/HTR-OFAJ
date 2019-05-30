@@ -149,8 +149,8 @@ def predict_the_fucking_thing(img_name):
         # in order to obtain a better OCR of the text we can potentially
         # apply a bit of padding surrounding the bounding box -- here we
         # are computing the deltas in both the x and y directions
-        dX = int((endX - startX) *0.05)
-        dY = int((endY - startY) *0.05)
+        dX = int((endX - startX) *0.1)
+        dY = int((endY - startY) *0.25)
 
         # apply padding to each side of the bounding box, respectively
         startX = max(0, startX - dX)
@@ -220,9 +220,9 @@ def enhance_image(name):
     sharper = ImageEnhance.Color(image)
     image = sharper.enhance(0)
     sharper = ImageEnhance.Brightness(image)
-    image = sharper.enhance(1)
+    image = sharper.enhance(1.5)
     sharper = ImageEnhance.Contrast(image)
-    image = sharper.enhance(2)
+    image = sharper.enhance(1.3)
     img_name = "{}_edited.png".format(name)
     image.save(img_name)
     print("{} written!".format(img_name))
@@ -256,4 +256,4 @@ while True:
         img_counter += 1
         
         enhance_image(img_name)
-        predict_the_fucking_thing("{}_edited.png".format(img_name))
+        predict_the_fucking_thing( "{}_edited.png".format(img_name))
