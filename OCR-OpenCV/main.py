@@ -2,6 +2,8 @@ import cv2
 from PIL import ImageEnhance
 from PIL import Image
 import csv
+import datetime 
+
 
 ###############################################
 # def detect_text(self):
@@ -17,6 +19,28 @@ import argparse
 import cv2
 
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+
+# This function is used to to write the csv file and  append the the values. 
+def write_file(input_text):
+    dt=datetime.datetime.now()
+    datef=dt.strftime("%Y/%m/%d")
+    timef=dt.strftime("%H:%M:%S")
+    text = (input_text) + '\n'
+
+    with open('ofaj_data.csv', 'a') as fd:
+        fd = csv.writer(fd, quoting=csv.QUOTE_ALL) 
+        fd.writerow([datef , timef, text])
+
+# This function is used to comapre the file.
+
+def check_entery(check):
+    import re
+    predicted_text =(check)
+    if re.match(r'[A-Za-z0-9]{7}', predicted_text):
+        write_file(predicted_text)
+        print('Updated CSV file')
+    else:
+        print('Take Photo Properly')
 
 
 def decode_predictions(scores, geometry):
@@ -183,30 +207,43 @@ def predict_the_thing(img_name):
     print("OCR TEXT")
     print("========")
     print("{}\n".format(text))
+    check_entery(text)
 
     # strip out non-ASCII text so we can draw the text on the image
     # using OpenCV, then draw the text and a bounding box surrounding
     # the text region of the input image
-    # text = "".join([c if ord(c) < 128 else "" for c in text]).strip()
-    # output = orig.copy()
-    # cv2.rectangle(output, (startX, startY), (endX, endY),
-    #     (0, 0, 255), 2)
-    # cv2.putText(output, text, (startX, startY - 20),
-    #     cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 3)
+    text = "".join([c if ord(c) < 128 else "" for c in text]).strip()
+    output = orig.copy()
+    cv2.rectangle(output, (startX, startY), (endX, endY),
+        (0, 0, 255), 2)
+    cv2.putText(output, text, (startX, startY - 20),
+        cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 3)
 
     # show the output image
     cv2.imshow("Text Detection", output)
     cv2.waitKey(0)
 
-def weite_file():
-    import pandas
-    import datetime 
-    dt=datetime.datetime.now()
-    datef=dt.strftime("%Y/%m/%d")
-    timef=dt.strftime("%H:%M:%S")
-    
+# # This function is used to to write the csv file and  append the the values. 
+# def write_file(input_text):
+#     dt=datetime.datetime.now()
+#     datef=dt.strftime("%Y/%m/%d")
+#     timef=dt.strftime("%H:%M:%S")
+#     text = (input_text)
 
+#     with open('ofaj_data.csv', 'w') as f:
+#         w = csv.writer(f, quoting=csv.QUOTE_ALL) 
+#         w.writerow([datef , timef, text])
 
+# # This function is used to comapre the file.
+
+# def check_entery(check):
+#     import re
+#     predicted_text =(check)
+#     if re.match(r'[A-Za-z0-9]{7}', predicted_text):
+#         write_file(predicted_text)
+#         print('Updated CSV file')
+#     else:
+#         print('Take Photo Properly')
 
 #ENhance The Image 
 def enhance_image(name):
