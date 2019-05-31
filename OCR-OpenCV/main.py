@@ -95,7 +95,7 @@ def decode_predictions(scores, geometry):
 padding =0.05
 
 
-def predict_the_fucking_thing(img_name):
+def predict_the_thing(img_name):
     # load the input image and grab the image dimensions
     image = cv2.imread(img_name)
     orig = image.copy()
@@ -187,12 +187,12 @@ def predict_the_fucking_thing(img_name):
     # strip out non-ASCII text so we can draw the text on the image
     # using OpenCV, then draw the text and a bounding box surrounding
     # the text region of the input image
-    text = "".join([c if ord(c) < 128 else "" for c in text]).strip()
-    output = orig.copy()
-    cv2.rectangle(output, (startX, startY), (endX, endY),
-        (0, 0, 255), 2)
-    cv2.putText(output, text, (startX, startY - 20),
-        cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 3)
+    # text = "".join([c if ord(c) < 128 else "" for c in text]).strip()
+    # output = orig.copy()
+    # cv2.rectangle(output, (startX, startY), (endX, endY),
+    #     (0, 0, 255), 2)
+    # cv2.putText(output, text, (startX, startY - 20),
+    #     cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 3)
 
     # show the output image
     cv2.imshow("Text Detection", output)
@@ -204,13 +204,7 @@ def weite_file():
     dt=datetime.datetime.now()
     datef=dt.strftime("%Y/%m/%d")
     timef=dt.strftime("%H:%M:%S")
-    df = pandas.read_csv('hrdata.csv', 
-                index_col='Employee', 
-                parse_dates=['Hired'],
-                header=0, 
-                names=['Date', 'Time', 'Shell Unique No.'])
-    df.to_csv('OFAJ.csv')
-
+    
 
 
 
@@ -256,4 +250,6 @@ while True:
         img_counter += 1
         
         enhance_image(img_name)
-        predict_the_fucking_thing( "{}_edited.png".format(img_name))
+        predictedtext = predict_the_thing( "{}_edited.png".format(img_name))
+
+        # csvinsertionfunction(text)
