@@ -3,22 +3,13 @@ from PIL import ImageEnhance
 from PIL import Image
 import csv
 import datetime 
-
-
-###############################################
-# def detect_text(self):
-# USAGE
-# python text_recognition.py --east frozen_east_text_detection.pb --image images/example_01.jpg
-# python text_recognition.py --east frozen_east_text_detection.pb --image images/example_04.jpg --padding 0.05
-
-# import the necessary packages
 from imutils.object_detection import non_max_suppression
 import numpy as np
 import pytesseract
 import argparse
 import cv2
 
-pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe' # only for windows users xD
 
 # This function is used to to write the csv file and  append the the values. 
 def write_file(input_text):
@@ -36,7 +27,7 @@ def write_file(input_text):
 def check_entery(check):
     import re
     predicted_text =(check)
-    if re.match(r'[A-Za-z0-9]{7}', predicted_text):
+    if re.match(r'[A-Za-z0-9]{,7}', predicted_text):
         write_file(predicted_text)
         print('Updated CSV file')
     else:
@@ -99,22 +90,6 @@ def decode_predictions(scores, geometry):
 
 	# return a tuple of the bounding boxes and associated confidences
 	return (rects, confidences)
-
-# construct the argument parser and parse the arguments
-# ap = argparse.ArgumentParser()
-# ap.add_argument("-i", "--image", type=str,
-# 	help="path to input image")
-# ap.add_argument("-east", "--east", type=str,
-# 	help="path to input EAST text detector")
-# ap.add_argument("-c", "--min-confidence", type=float, default=0.5,
-# 	help="minimum probability required to inspect a region")
-# ap.add_argument("-w", "--width", type=int, default=320,
-# 	help="nearest multiple of 32 for resized width")
-# ap.add_argument("-e", "--height", type=int, default=320,
-# 	help="nearest multiple of 32 for resized height")
-# ap.add_argument("-p", "--padding", type=float, default=0.05,
-# 	help="amount of padding to add to each border of ROI")
-# args = vars(ap.parse_args())
 
 padding =0.05
 
@@ -223,27 +198,6 @@ def predict_the_thing(img_name):
     cv2.imshow("Text Detection", output)
     cv2.waitKey(0)
 
-# # This function is used to to write the csv file and  append the the values. 
-# def write_file(input_text):
-#     dt=datetime.datetime.now()
-#     datef=dt.strftime("%Y/%m/%d")
-#     timef=dt.strftime("%H:%M:%S")
-#     text = (input_text)
-
-#     with open('ofaj_data.csv', 'w') as f:
-#         w = csv.writer(f, quoting=csv.QUOTE_ALL) 
-#         w.writerow([datef , timef, text])
-
-# # This function is used to comapre the file.
-
-# def check_entery(check):
-#     import re
-#     predicted_text =(check)
-#     if re.match(r'[A-Za-z0-9]{7}', predicted_text):
-#         write_file(predicted_text)
-#         print('Updated CSV file')
-#     else:
-#         print('Take Photo Properly')
 
 #ENhance The Image 
 def enhance_image(name):
