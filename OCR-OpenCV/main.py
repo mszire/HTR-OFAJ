@@ -14,9 +14,9 @@ pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesse
 # This function is used to to write the csv file and  append the the values. 
 def write_file(input_text):
     dt=datetime.datetime.now()
-    datef=dt.strftime("%Y/%m/%d")
-    timef=dt.strftime("%H:%M:%S")
-    text = (input_text) + '\n'
+    datef=dt.strftime("%x")
+    timef=dt.strftime("%X")
+    text = (input_text)
 
     with open('ofaj_data.csv', 'a') as fd:
         fd = csv.writer(fd, quoting=csv.QUOTE_ALL) 

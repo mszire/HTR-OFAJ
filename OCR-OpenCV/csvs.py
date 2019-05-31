@@ -1,8 +1,8 @@
 import datetime 
 import csv
 dt=datetime.datetime.now()
-datef=dt.strftime("%Y/%m/%d")
-timef=dt.strftime("%H:%M:%S")
+datef=dt.strftime("%x")
+timef=dt.strftime("%X")
 text = input('Enter Something text: ')
 
 with open('ofaj_data.csv', 'w') as f:
