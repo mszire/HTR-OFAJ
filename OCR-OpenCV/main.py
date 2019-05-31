@@ -27,7 +27,7 @@ def write_file(input_text):
 def check_entery(check):
     import re
     predicted_text =(check)
-    if re.match(r'[A-Za-z0-9]{,7}', predicted_text):
+    if re.match(r'[A-Za-z0-9]{7}', predicted_text):
         write_file(predicted_text)
         print('Updated CSV file')
     else:
