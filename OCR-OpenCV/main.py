@@ -9,7 +9,7 @@ import pytesseract
 import argparse
 import cv2
 
-pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe' # only for windows users xD
+# pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe' # only for windows users xD
 
 # This function is used to to write the csv file and  append the the values. 
 def write_file(input_text):
@@ -27,7 +27,7 @@ def write_file(input_text):
 def check_entery(check):
     import re
     predicted_text =(check)
-    if re.match(r'[A-Za-z0-9]{7}', predicted_text):
+    if re.match(r'[A-Za-z0-9]{7,}', predicted_text):
         write_file(predicted_text)
         print('Updated CSV file')
     else:
@@ -195,7 +195,7 @@ def predict_the_thing(img_name):
         cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 3)
 
     # show the output image
-    cv2.imshow("Text Detection", output)
+    # cv2.imshow("Text Detection", output)
     cv2.waitKey(0)
 
 
@@ -239,6 +239,8 @@ while True:
         cv2.imwrite(img_name, frame)
         print("{} written!".format(img_name))
         img_counter += 1
+        cv2.imwrite('datasets/pratik.png',frame)
+        print('The orignal image is stored in the datasets folder ')
         
         enhance_image(img_name)
         predictedtext = predict_the_thing( "{}_edited.png".format(img_name))
