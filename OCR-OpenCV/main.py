@@ -13,7 +13,7 @@ import cv2
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe' # only for windows users xD
 
 # This function is used to to write the csv file and  append the the values. 
-def write_file(input_text):
+def write_file(input_text,):
     dt=datetime.datetime.now()
     datef=dt.strftime("%x")
     timef=dt.strftime("%X")
@@ -21,7 +21,7 @@ def write_file(input_text):
 
     with open('ofaj_data.csv', 'a') as fd:
         fd = csv.writer(fd, quoting=csv.QUOTE_ALL) 
-        fd.writerow([datef , timef, text])
+        fd.writerow([datef , timef, file_name, text])
 
 # This function is used to comapre the file.
 
