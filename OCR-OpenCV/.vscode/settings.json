@@ -1,4 +1,6 @@
 {
-    "python.pythonPath": "C:\\Users\\MSzire\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
-    "python.formatting.provider": "black"
+    "python.pythonPath": "/usr/bin/python",
+    "python.formatting.provider": "black",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }
