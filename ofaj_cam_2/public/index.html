@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <!-- <link rel="shortcut icon" href=""> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    
+
+
+
+
+
+
+    <!-- <h1>hello</h1>
+
+
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="snap">Snap Photo</button>
+    <canvas id="canvas" width="640" height="480"></canvas> -->
+        <div class="row">
+            <div class="col s12 m12 l3 box_one">
+                <h5>Buttons Set</h5>
+                <div class="first_btn">
+                    <a href="#">
+                        <button id="snap" class="btn waves waves-effect cap_btn">CAPTURE</button>
+                    </a>
+                </div>
+                <!-- <div class="second_btn">
+                        <a href="#">
+                            <button class="btn waves waves-effect exp_btn">EXAMPLE</button>
+                        </a>
+                    </div> -->
+                <div class="third_btn">
+                    <a href="#">
+                        <button class="btn waves waves-effect dow_btn">DOWNLOAD CSV</button>
+                    </a>
+                </div>
+
+                <div class="card card_sid">
+                    <span class="card-content">
+                        <label for="serial_no" class="card-title" id="lbl_serial">Serial No. - </label>
+                        <p id="serial_no">
+                            abcdef123456789
+                        </p>
+                    </span>
+                </div>
+            </div>
+            <div class="col s12 m12 l6">
+                <h5>Camera</h5>
+                <div class="center">
+                    <div class="card cam_view center">
+        
+                    </div>
+                    <div class="card part_no center">
+                        <!-- <video id="video" width="640" height="480" autoplay></video> -->
+                        <video id="video" class="center" autoplay></video>
+        
+                        
+                    </div>
+
+                    <div class="card canvas_card">
+                        <canvas id="canvas" width="640" height="480"></canvas>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col s12 m12 l3">
+                <h5>List</h5>
+                <ul class="collection">
+                    <li class="collection-item">Topic1</li>
+                    <li class="collection-item">Topic2</li>
+                    <li class="collection-item">Topic3</li>
+                    <li class="collection-item">Topic4</li>
+                    <li class="collection-item">Topic5</li>
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        var video = document.getElementById('video');
+
+        // Get access to the camera!
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            // Not adding `{ audio: true }` since we only want video now
+            navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+                //video.src = window.URL.createObjectURL(stream);
+                video.srcObject = stream;
+                video.play();
+            });
+        }
+
+
+        var get_url
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        var video = document.getElementById('video');
+
+        // Trigger photo take
+        document.getElementById("snap").addEventListener("click", function () {
+            context.drawImage(video, 0, 0, 640, 480)
+            get_url = canvas.toDataURL();
+            // console.log(get_url)
+
+            // var strDataURI
+            // var img = new Image
+            // img.get_url = strDataURI
+            // img.onload = function () {
+            //     context.drawImage(img, 0, 0,500,500); // Or at whatever offset you like
+            // };
+            socket.emit('responce', { data: get_url })
+
+
+        });
+
+
+
+
+        //client side
+        var socket = io.connect('http://localhost:3000')
+
+
+        socket.on('server_se_le', (data) => {
+            console.log(data)
+
+            document.getElementById('serial_no').innerHTML=data.data
+        })
+    </script>
+
+</body>
+
+</html>

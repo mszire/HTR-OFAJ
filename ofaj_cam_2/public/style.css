@@ -1,0 +1,65 @@
+.cap_btn,.exp_btn,.dow_btn{
+    /* width:60%; */
+    width: 100%;
+    height: 60px !important;
+    border-radius: 15px !important;
+    background-color: rgb(2, 14, 31) !important;
+}
+
+h5{
+    color: white;
+    
+
+}
+.canvas_card{
+    border-radius: 15px !important;
+    box-shadow:1.25rem 1.375rem 30px 5px rgba(0, 0, 0, 0.250) !important;
+}
+.first_btn,.second_btn,.third_btn{
+    margin-top: 10%;
+    
+}
+.card_sid{
+    padding-left: 10px;
+    margin-top: 10% !important;
+    border-radius: 15px !important;
+    box-shadow:1.25rem 1.375rem 30px 5px rgba(0, 0, 0, 0.250) !important;
+}
+body{
+    font-family: 'Quicksand'!important;
+    background: linear-gradient(to right,rgb(32, 237, 250),rgb(23, 58, 161));
+}
+/* .box_one{
+    border-right: 2px solid rgba(128, 128, 128, 0.35) !important;
+} */
+video{
+    /* width: 90%; */
+    /* height: 450px; */
+    border-radius: 15px !important;
+    box-shadow:1.25rem 1.375rem 30px 5px rgba(0, 0, 0, 0.250) !important;
+    /* margin-left:15% !important; */
+    /* background-color: teal !important; */
+}
+#canvas{
+    border-radius: 15px;
+    padding-top: 5px;
+}
+.part_no{
+    /* width: 90%; */
+    padding-top: 20px !important;
+    overflow: hidden;
+    border-radius: 15px !important;
+    box-shadow:1.25rem 1.375rem 30px 5px rgba(0, 0, 0, 0.250) !important;
+    /* margin-left:15% !important; */
+    background-color: rgb(255, 255, 255) !important;
+}
+#lbl_serial{
+    font-size:25px;
+    font-weight: bold;
+}
+#serial_no{
+    font-size:25px;
+}
+.collection li{
+    font-weight: bold;
+}

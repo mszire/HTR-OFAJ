@@ -8,6 +8,7 @@ import numpy as np
 import pytesseract
 from sys import platform as _platform
 import re
+import subprocess
 
 if _platform == "linux" or _platform == "linux2":
     # linux
