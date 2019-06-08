@@ -13,7 +13,28 @@ import cv2
 import pytesseract
 import re
 import datetime
-pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+from sys import platform as _platform
+
+if _platform == "linux" or _platform == "linux2":
+    # linux
+    pytesseract.pytesseract.tesseract_cmd = (
+        "/usr/bin/tesseract"
+    )
+elif _platform == "darwin":
+    # MAC OS X
+    pytesseract.pytesseract.tesseract_cmd = (
+        "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
+    )
+elif _platform == "win32":
+    # Windows
+    pytesseract.pytesseract.tesseract_cmd = (
+        "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
+    )
+elif _platform == "win64":
+    # Windows 64-bit
+    pytesseract.pytesseract.tesseract_cmd = (
+        "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
+    )
 
 prediction_regex = r"[A-Za-z0-9]{7}"
 
