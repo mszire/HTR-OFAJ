@@ -11,36 +11,11 @@ import imutils
 import time
 import cv2
 import pytesseract
-import re
-import datetime
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
 prediction_regex = r"[A-Za-z0-9]{7}"
 
 
-def add_entry_to_csv(image_text):
-    """This function is used to write to the csv file."""
-
-    current_date_time = datetime.datetime.now()
-    current_date = current_date_time.strftime("%x")
-    current_time = current_date_time.strftime("%X")
-
-    with open("ofaj_data.csv", "a") as csv_file:
-        csv_file = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
-        csv_file.writerow([current_date, current_time, image_text])
-        print("Entry added to CSV.")
-
-
-
-def validate_prediction(predicted_text):
-    """This function is used to comapare the prediction with regex."""
-
-    validated = re.match(prediction_regex, predicted_text)
-
-    if not validated:
-        print("Predicted text could not be validated.")
-
-    return validated
 
 def decode_predictions(scores, geometry):
 	# grab the number of rows and columns from the scores volume, then
@@ -152,9 +127,6 @@ while True:
 
 	output_text=pytesseract.image_to_string(frame)
 	print(output_text)
-	if validate_prediction(output_text):
-		add_entry_to_csv(output_text)
-	
 
 	# check to see if we have reached the end of the stream
 	if frame is None:
