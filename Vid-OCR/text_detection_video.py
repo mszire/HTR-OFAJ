@@ -61,7 +61,7 @@ def validate_prediction(predicted_text):
     if not validated:
         print("Predicted text could not be validated.")
 
-    return validated and playsound('beep-09.wav')
+    return validated 
 
 
 def decode_predictions(scores, geometry):
@@ -176,7 +176,7 @@ while True:
     output_text = pytesseract.image_to_string(frame)
     print(output_text)
     if validate_prediction(output_text):
-        add_entry_to_csv(output_text)
+        add_entry_to_csv(output_text) and playsound('beep-09.wav')
 
     # check to see if we have reached the end of the stream
     if frame is None:
