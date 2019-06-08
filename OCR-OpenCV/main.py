@@ -10,6 +10,7 @@ import pytesseract
 import argparse
 import cv2
 
+
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe' # only for windows users xD
 
 # This function is used to to write the csv file and  append the the values. 

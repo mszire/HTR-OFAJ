@@ -10,6 +10,8 @@ import argparse
 import imutils
 import time
 import cv2
+import pytesseract
+pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
 def decode_predictions(scores, geometry):
 	# grab the number of rows and columns from the scores volume, then
@@ -118,6 +120,7 @@ while True:
 	# VideoStream or VideoCapture object
 	frame = vs.read()
 	frame = frame[1] if args.get("video", False) else frame
+	print(pytesseract.image_to_string(frame))
 
 	# check to see if we have reached the end of the stream
 	if frame is None:
@@ -159,7 +162,7 @@ while True:
 		endY = int(endY * rH)
 
 		# draw the bounding box on the frame
-		cv2.rectangle(orig, (startX, startY), (endX, endY), (0, 255, 0), 2)
+		cv2.rectangle(orig, (startX, startY), (endX, endY), (0, 300, 0), 2)
 
 	# update the FPS counter
 	fps.update()
