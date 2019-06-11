@@ -13,8 +13,10 @@ import cv2
 import pytesseract
 import re
 import datetime
+import csv
 from sys import platform as _platform
 from playsound import playsound
+pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
 if _platform == "linux" or _platform == "linux2":
     # linux
