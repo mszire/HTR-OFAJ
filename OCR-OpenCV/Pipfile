@@ -8,7 +8,7 @@ verify_ssl = true
 [packages]
 imutils = "==0.5.2"
 numpy = "==1.16.4"
-opencv-python = "==4.1.0.25"
+opencv-python = "==4.2.0.32"
 pytesseract = "==0.2.6"
 tesseract = "==0.1.3"
 Pillow = "==6.0.0"
